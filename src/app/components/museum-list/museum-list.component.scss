@@ -1,0 +1,39 @@
+// - Font sizes (px)
+// 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+.museum-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.exhibitions-intro,
+.museum {
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.exhibitions-intro {
+    background-color: lightgray;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.museum:nth-child(even) {
+    background-color: lightgreen;
+}
+
+.museum:nth-child(odd) {
+    background-color: lightcoral;
+}
+
+.city-name,
+.museum-name,
+.date {
+    font-size: 2rem;
+}
+
+.exhibition-name {
+    font-size: 3rem;
+}
