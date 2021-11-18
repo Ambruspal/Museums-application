@@ -9,9 +9,10 @@ import { MuseumDetailsComponent } from './components/museum-details/museum-detai
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { ExhibitionComponent } from './components/exhibition/exhibition.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, MuseumListComponent, MuseumDetailsComponent, RegistrationComponent, LoginComponent, MainComponent],
+  declarations: [AppComponent, NavComponent, MuseumListComponent, MuseumDetailsComponent, RegistrationComponent, LoginComponent, MainComponent, ExhibitionComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
