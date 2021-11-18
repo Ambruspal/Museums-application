@@ -2,11 +2,14 @@
     <div class="exhibitions-intro">
         <p>Válogasson kedvére kiállításaink közül:</p>
     </div>
-    <div class="museum">
+    <div 
+        class="museum"
+        *ngFor="let museum of museumList$ | async"
+    >
         <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
+        <p class="city-name">{{ museum.city }}</p>
         <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
+        <h3 class="museum-name">{{ museum.name }}</h3>
     </div>
     <div class="museum">
         <p class="date">{{currentDate}}</p>
@@ -14,40 +17,5 @@
         <h2 class="exhibition-name">Kiállítás neve</h2>
         <h3 class="museum-name">Múzeum neve</h3>
     </div>
-    <div class="museum">
-        <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
-    </div>
-    <div class="museum">
-        <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
-    </div>
-    <div class="museum">
-        <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
-    </div>
-    <div class="museum">
-        <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
-    </div>
-    <div class="museum">
-        <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
-    </div>
-    <div class="museum">
-        <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
-    </div>
+    
 </section>

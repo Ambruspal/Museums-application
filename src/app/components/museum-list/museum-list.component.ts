@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Museum } from 'src/app/models/Museum';
+import { MuseumHttpService } from 'src/app/services/http/museum-http.service';
 
 @Component({
   selector: 'app-museum-list',
@@ -8,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class MuseumListComponent implements OnInit {
   currentDate: string = new Date().toLocaleDateString();
 
-  constructor() {}
+  constructor(
+    private museumHttpService: MuseumHttpService
+  ) {}
+
+  museumList$: Observable<Museum[]> = this.museumHttpService.getAll();
 
   ngOnInit(): void {}
 }
