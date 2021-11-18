@@ -13,14 +13,13 @@
     gap: 4.8rem;
     width: 100%;
     list-style: none;
+    li:last-child {
+        margin-left: auto;
+    }
 }
 
 .main-nav-link:link,
 .main-nav-link:visited {
     text-decoration: none;
     font-size: 2rem;
-}
-
-.main-nav-list li:last-child {
-    margin-left: auto;
 }
