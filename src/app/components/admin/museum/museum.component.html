@@ -1,83 +1,84 @@
 <div *ngIf="museum" class="museum">
-<div>
-    <h1>{{ museum.name }}</h1>
-    <div> 
-        <p>Address:</p>
-        <span>{{ museum.city }}</span>
-        <p>{{ museum.address }}</p>
-        <span>{{ museum.openingHours }}</span>
-    </div>
     <div>
-        <p>{{museum.description}}</p>
+        <h1>{{ museum.name }}</h1>
+        <div>
+            <p>Address:</p>
+            <span>{{ museum.city }}</span>
+            <p>{{ museum.address }}</p>
+            <span>{{ museum.openingHours }}</span>
+        </div>
+        <div>
+            <p>{{museum.description}}</p>
+        </div>
     </div>
-</div>
 
-<div class="exhibitions">
-    <h2>Exhibitions</h2>
-    <p *ngIf="!museum.exhibitions.length">This museum has currently no exhibitions.</p>
-    
-    <table *ngIf="museum.exhibitions.length">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Full Price</th>
-                <th>Description</th>
-                <th>Capacity</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let exhibition of museum.exhibitions">
-                <td>{{ exhibition.id }}</td>
-                <td>{{ exhibition.title }}</td>
-                <td>{{ exhibition.fullPrice }}</td>
-                <td>{{ exhibition.description }}</td>
-                <td>{{ exhibition.capacity }}</td>
-                <td>{{ exhibition.start }}</td>
-                <td>{{ exhibition.end }}</td>
-                <td><button class="edit" (click)="editExhibition(exhibition)" >Edit</button></td>
-                <td><button class="delete" (click)="deleteExhibition(exhibition.id, exhibition.title)" >Delete</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button class="exhibitions-add" *ngIf="!formVisible" (click)="setFormVisibility()">Add a New Exhibition</button>
-    <form *ngIf="formVisible" [formGroup]="exhibitionForm" (ngSubmit)=onSubmit()>
-        <div>
-            <label for="id">ID</label>
-            <input id="id" formControlName="id" type="text" readonly>
-        </div>
-        <div>
-            <label for="title">Title</label>
-            <input  id="title" formControlName="title" type="text">
-        </div>
-        <div>
-            <label for="fullPrice">Full Price</label>
-            <input  id="fullPrice" formControlName="fullPrice" type="number">
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" formControlName="description"></textarea>
-        </div>
-        <div>
-            <label for="capacity">Capacity</label>
-            <input [readonly]="readonly"  id="capacity" formControlName="capacity" type="number">
-        </div>
-        <div>
-            <label for="start">Start</label>
-            <input  id="start" formControlName="start" type="text">
-        </div>
-        <div>
-            <label for="end">End</label>
-            <input id="end" formControlName="end" type="text">
-        </div>
-       
-        <button type="submit" [disabled]="exhibitionForm.invalid">Submit</button>
-        <button (click)="setFormVisibility()" type="button">Cancel</button>
-    </form>
-</div>
+    <div class="exhibitions">
+        <h2>Exhibitions</h2>
+        <p *ngIf="!museum.exhibitions.length">This museum has currently no exhibitions.</p>
+
+        <table *ngIf="museum.exhibitions.length">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Full Price</th>
+                    <th>Description</th>
+                    <th>Capacity</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exhibition of museum.exhibitions">
+                    <td>{{ exhibition.id }}</td>
+                    <td>{{ exhibition.title }}</td>
+                    <td>{{ exhibition.fullPrice }}</td>
+                    <td>{{ exhibition.description }}</td>
+                    <td>{{ exhibition.capacity }}</td>
+                    <td>{{ exhibition.start }}</td>
+                    <td>{{ exhibition.end }}</td>
+                    <td><button class="edit" (click)="editExhibition(exhibition)">Edit</button></td>
+                    <td><button class="delete"
+                            (click)="deleteExhibition(exhibition.id, exhibition.title)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="exhibitions-add" *ngIf="!formVisible" (click)="setFormVisibility()">Add a New Exhibition</button>
+        <form *ngIf="formVisible" [formGroup]="exhibitionForm" (ngSubmit)=onSubmit()>
+            <div>
+                <label for="id">ID</label>
+                <input id="id" formControlName="id" type="text" readonly>
+            </div>
+            <div>
+                <label for="title">Title</label>
+                <input id="title" formControlName="title" type="text">
+            </div>
+            <div>
+                <label for="fullPrice">Full Price</label>
+                <input id="fullPrice" formControlName="fullPrice" type="number">
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" formControlName="description"></textarea>
+            </div>
+            <div>
+                <label for="capacity">Capacity</label>
+                <input [readonly]="readonly" id="capacity" formControlName="capacity" type="number">
+            </div>
+            <div>
+                <label for="start">Start</label>
+                <input id="start" formControlName="start" type="text">
+            </div>
+            <div>
+                <label for="end">End</label>
+                <input id="end" formControlName="end" type="text">
+            </div>
+
+            <button type="submit" [disabled]="exhibitionForm.invalid">Submit</button>
+            <button (click)="setFormVisibility()" type="button">Cancel</button>
+        </form>
+    </div>
 
 </div>
