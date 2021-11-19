@@ -43,7 +43,7 @@
                 <th>Address</th>
                 <th>Opening Hours</th>
                 <th>Description</th>
-                <th>Exhibitions</th>
+                
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -51,13 +51,12 @@
         <tbody>
             <tr *ngFor="let museum of museums">
                 <td>{{ museum.id }}</td>
-                <td>{{ museum.name }}</td>
+                <td><a [routerLink]="['/admin/museums', museum.id]">{{ museum.name }}</a></td>
                 <td>{{ museum.city }}</td>
                 <td>{{ museum.zip }}</td>
                 <td>{{ museum.address }}</td>
                 <td>{{ museum.openingHours }}</td>
                 <td>{{ museum.description }}</td>
-                <td><button [routerLink]="['/admin/museums', museum.id]">Details</button></td>
                 <td><button class="edit" (click)="editMuseum(museum)">Edit</button></td>
                 <td><button class="delete" (click)="deleteMuseum(museum.id, museum.name)">Delete</button></td>
             </tr>

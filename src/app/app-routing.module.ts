@@ -13,8 +13,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   { 
-    path: 'admin', 
-    component: AdminPageComponent,
+    path: 'admin', component: AdminPageComponent,
     children: [
       { path: 'museums/:id', component: MuseumComponent },
       { path: 'museums', component: MuseumsComponent },

@@ -14,12 +14,12 @@ import { Exhibition } from 'src/app/models/Exhibition';
 export class MuseumsComponent extends BaseComponent {
   museums: Museum[] = [];
 
-  exhibitions: Exhibition[] = [];
+
 
   formVisible = false;
   readonly = false;
 
-  exhibitionsVisible = false;
+ 
 
   museumForm!: FormGroup;
 
@@ -31,11 +31,11 @@ export class MuseumsComponent extends BaseComponent {
   }
 
   ngOnInit(): void {
-    this.getAllMusuems();
+    this.getAllMuseums();
     this.createForm();
   }
 
-  getAllMusuems(): void {
+  getAllMuseums(): void {
     this.museumHttpService
       .getAll()
       .pipe(takeUntil(this.destroy$))
@@ -152,22 +152,5 @@ export class MuseumsComponent extends BaseComponent {
     }
   }
 
-  showExhibitions(id: number | undefined): void {
-    if (this.exhibitionsVisible) {
-      this.exhibitionsVisible = false
-    }
-    if (id) {
-      this.museumHttpService.getById(id.toString())
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          (museum: Museum) => {
-            this.exhibitions = museum.exhibitions;
-            console.log(this.exhibitions);
-          },
-          err => alert(err.message),
-          () => this.exhibitionsVisible = true
-        )
-    }
-    
-  }
+  
 }
