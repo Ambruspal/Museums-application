@@ -1,20 +1,20 @@
-// - Font sizes (px)
-// 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
-.museum-detail {
-  padding: 2rem;
+.museum-section {
+    padding: 7rem 5rem;
+}
 
-  h2 {
-    padding: 6rem 0 4rem;
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 700;
-  }
+// Museum-details
+.museum {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 8rem;
 }
 
 // .museum-detail h2 {
 // }
 
 .img-holder {
+<<<<<<< HEAD
   padding: 5rem 0;
 }
 
@@ -29,3 +29,60 @@
   font-size: 2.4rem;
   line-height: 1.5;
 }
+=======
+    img {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 1rem;
+    }
+}
+
+.museum-details-section {
+    padding: 1rem 2rem;
+}
+
+.address,
+.opening-hours,
+.museum-details-section p {
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.address,
+.opening-hours {
+    color: blue;
+}
+
+.name {
+    color: red;
+    font-size: 3rem;
+}
+
+.datas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.description {
+    margin-top: 4rem;
+    font-size: 2.4rem;
+}
+
+// List of exhibitions
+.exhibition-list-section h2 {
+    margin: 4.8rem 0 6.66rem;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.exhibition-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5.43rem;
+}
+>>>>>>> ambrus-pal
