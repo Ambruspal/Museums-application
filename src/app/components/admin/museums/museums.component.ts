@@ -8,15 +8,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-museums',
   templateUrl: './museums.component.html',
-  styleUrls: ['./museums.component.scss']
+  styleUrls: ['./museums.component.scss'],
 })
 export class MuseumsComponent extends BaseComponentComponent {
-
   museums: Museum[] = [];
 
   formVisible = false;
+  readonly = false;
 
-  museumForm!: FormGroup
+  museumForm!: FormGroup;
 
   constructor(
     private museumHttpService: MuseumHttpService,
@@ -31,15 +31,15 @@ export class MuseumsComponent extends BaseComponentComponent {
   }
 
   getAllMusuems(): void {
-    this.museumHttpService.getAll()
+    this.museumHttpService
+      .getAll()
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (museumList: Museum[]) => {
           this.museums = museumList;
-          console.log(this.museums)
         },
-        err => alert(err.message)
-      )
+        (err) => alert(err.message)
+      );
   }
 
   createForm(): void {
@@ -51,21 +51,74 @@ export class MuseumsComponent extends BaseComponentComponent {
       address: ['', Validators.required],
       openingHours: ['', Validators.required],
       description: ['', Validators.required],
-    })
+    });
   }
 
   setFormVisibility(): void {
     this.formVisible = !this.formVisible;
+    if (this.readonly) {
+      this.readonly = false;
+    }
+    this.museumForm.reset();
   }
 
   onSubmit(): void {
-    console.log(this.museumForm.value);
+    // we check if we should update or create a museum.
     if (this.museumForm.value.id) {
-      console.log('put request comes')
+      const { id }: { id: string } = this.museumForm.value;
+      const payload = this.museumForm.value;
+
+      this.museumHttpService
+        .updateById(payload, id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (savedMuseum: Museum) => {
+            if (savedMuseum) {
+              this.museums = this.museums.map((m) =>
+                m.id === Number(id) ? savedMuseum : m
+              );
+            } else {
+              throw new Error('something went wrong');
+            }
+          },
+          (error: any) => alert(error.message),
+          () => {
+            this.museumForm.reset();
+            this.readonly = false;
+            this.setFormVisibility();
+          }
+        );
     } else {
-      console.log('create a new museum')
+      // we create a new museum entry
+      const { name, city, zip, address, openingHours, description } =
+        this.museumForm.value;
+      const newMuseum: Museum = {
+        name,
+        city,
+        zip,
+        address,
+        openingHours,
+        description,
+        exhibitions: [],
+      };
+      this.museumHttpService
+        .create(newMuseum)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((savedMuseum: Museum) => {
+          if (savedMuseum) {
+            this.museums = [...this.museums, savedMuseum];
+          } else {
+            throw new Error('something went wrong');
+          }
+        },
+        (error: any) => alert(error.message),
+          () => {
+            this.museumForm.reset();
+            this.readonly = false;
+            this.setFormVisibility();
+          }
+        );
     }
-    this.museumForm.reset();
   }
 
   editMuseum(museum: Museum): void {
@@ -73,6 +126,23 @@ export class MuseumsComponent extends BaseComponentComponent {
       this.setFormVisibility();
     }
     this.museumForm.patchValue(museum);
+    this.readonly = true;
   }
 
+  deleteMuseum(id: number | undefined, name: string): void {
+    const confirmed = confirm(`You are about to delete: ${name}. Are you sure?`);
+    if (confirmed && id) {
+      this.museumHttpService.deleteById(id.toString())
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          () => console.log(`Museum: ${name} has been deleted`),
+          err => alert(err.message),
+          () => {
+            this.museums = this.museums.filter(m => m.id !== Number(id));
+          }
+        )
+    } else {
+      return;
+    }
+  }
 }

@@ -1,0 +1,10 @@
+@mixin buttonStyle($bgcolor: lightgreen, $color: black) {
+    cursor: pointer;
+    background-color: $bgcolor;
+    color: $color;
+    padding: 0.5em;
+    outline: none;
+    border: none;
+    border-radius: 0.5em;
+    transition: all 0.3s;
+  }

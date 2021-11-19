@@ -1,4 +1,5 @@
 <div class="museums">
+    <h2>Museums</h2>
     <form *ngIf="formVisible" [formGroup]="museumForm" (ngSubmit)=onSubmit()>
         <div>
             <label for="id">ID</label>
@@ -6,19 +7,19 @@
         </div>
         <div>
             <label for="name">Name</label>
-            <input id="name" formControlName="name" type="text">
+            <input [readonly]="readonly" id="name" formControlName="name" type="text">
         </div>
         <div>
             <label for="city">City</label>
-            <input id="city" formControlName="city" type="text">
+            <input [readonly]="readonly" id="city" formControlName="city" type="text">
         </div>
         <div>
             <label for="zip">ZIP</label>
-            <input id="zip" formControlName="zip" type="text">
+            <input [readonly]="readonly" id="zip" formControlName="zip" type="number">
         </div>
         <div>
             <label for="address">Address</label>
-            <input id="address" formControlName="address" type="text">
+            <input [readonly]="readonly" id="address" formControlName="address" type="text">
         </div>
         <div>
             <label for="openingHours">Opening Hours</label>
@@ -26,12 +27,12 @@
         </div>
         <div>
             <label for="description">Description</label>
-            <input id="description" formControlName="description" type="text">
+            <textarea id="description" formControlName="description"></textarea>
         </div>
         <button type="submit" [disabled]="museumForm.invalid">Submit</button>
         <button (click)="setFormVisibility()" type="button">Cancel</button>
     </form>
-    <button *ngIf="!formVisible" (click)="setFormVisibility()">Add a New Musuem</button>
+    <button class="museums-add" *ngIf="!formVisible" (click)="setFormVisibility()">Add a New Museum</button>
     <table>
         <thead>
             <tr>
@@ -55,8 +56,8 @@
                 <td>{{ museum.address }}</td>
                 <td>{{ museum.openingHours }}</td>
                 <td>{{ museum.description }}</td>
-                <td><button (click)="editMuseum(museum)" >Edit</button></td>
-                <td><button>Delete</button></td>
+                <td><button class="edit" (click)="editMuseum(museum)" >Edit</button></td>
+                <td><button class="delete" (click)="deleteMuseum(museum.id, museum.name)" >Delete</button></td>
             </tr>
         </tbody>
     </table>

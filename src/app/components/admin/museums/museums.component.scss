@@ -1,0 +1,79 @@
+@use '../../../app.component' as m;
+
+.museums {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 80%;
+    min-width: 250px;
+    max-width: 1000px;
+    margin: 2em auto;
+
+    &-add {
+        @include m.buttonStyle;
+        width: 20%;
+
+        &:hover {
+            background-color: green;
+            color: white;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        button {
+            @include m.buttonStyle;
+            width: 50%;
+
+            &:disabled {
+                cursor: not-allowed;
+            }
+
+            &:hover:not(:disabled) {
+                background-color: green;
+                color: white;
+            }
+
+            &:last-child {
+                @include m.buttonStyle(lightgrey);
+
+                &:hover {
+                    background: grey;
+                }
+            }
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+
+            input, textarea {
+                padding: .5em;
+            }
+        }
+    }
+
+    table {
+        button {
+            @include m.buttonStyle(lightblue);
+
+            &:hover {
+                background: blue;
+                color: white;
+            }
+
+            &.delete {
+                background: pink;
+            
+                &:hover {
+                    background: red;
+                }
+            }
+        }
+    }
+}
