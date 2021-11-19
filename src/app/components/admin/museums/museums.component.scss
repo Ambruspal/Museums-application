@@ -25,6 +25,10 @@
         flex-direction: column;
         gap: 1em;
 
+        input, textarea {
+            border-radius: .5em;
+        }
+
         button {
             @include m.buttonStyle;
             width: 50%;

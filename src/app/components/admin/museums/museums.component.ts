@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Museum } from 'src/app/models/Museum';
 import { MuseumHttpService } from 'src/app/services/http/museum-http.service';
-import { BaseComponentComponent } from '../../base-component/base-component.component';
+import { BaseComponent } from '../../base/base.component';
 import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Exhibition } from 'src/app/models/Exhibition';
 
 @Component({
   selector: 'app-museums',
   templateUrl: './museums.component.html',
   styleUrls: ['./museums.component.scss'],
 })
-export class MuseumsComponent extends BaseComponentComponent {
+export class MuseumsComponent extends BaseComponent {
   museums: Museum[] = [];
+
+  exhibitions: Exhibition[] = [];
 
   formVisible = false;
   readonly = false;
+
+  exhibitionsVisible = false;
 
   museumForm!: FormGroup;
 
@@ -37,6 +42,7 @@ export class MuseumsComponent extends BaseComponentComponent {
       .subscribe(
         (museumList: Museum[]) => {
           this.museums = museumList;
+          console.log(this.museums)
         },
         (err) => alert(err.message)
       );
@@ -144,5 +150,24 @@ export class MuseumsComponent extends BaseComponentComponent {
     } else {
       return;
     }
+  }
+
+  showExhibitions(id: number | undefined): void {
+    if (this.exhibitionsVisible) {
+      this.exhibitionsVisible = false
+    }
+    if (id) {
+      this.museumHttpService.getById(id.toString())
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          (museum: Museum) => {
+            this.exhibitions = museum.exhibitions;
+            console.log(this.exhibitions);
+          },
+          err => alert(err.message),
+          () => this.exhibitionsVisible = true
+        )
+    }
+    
   }
 }

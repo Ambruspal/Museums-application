@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-base-component',
-  templateUrl: './base-component.component.html',
-  styleUrls: ['./base-component.component.scss']
+  selector: 'app-base',
+  templateUrl: './base.component.html',
+  styleUrls: ['./base.component.scss']
 })
-export class BaseComponentComponent implements OnInit, OnDestroy {
+export class BaseComponent implements OnInit, OnDestroy {
 
   constructor() { }
 

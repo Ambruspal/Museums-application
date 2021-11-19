@@ -15,8 +15,9 @@ import { AdminPageComponent } from './components/admin/admin-page/admin-page.com
 import { MuseumsComponent } from './components/admin/museums/museums.component';
 import { ExhibitionsComponent } from './components/admin/exhibitions/exhibitions.component';
 import { RegistrationsComponent } from './components/admin/registrations/registrations.component';
-import { BaseComponentComponent } from './components/base-component/base-component.component';
+import { BaseComponent } from './components/base/base.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MuseumComponent } from './components/admin/museum/museum.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MuseumsComponent,
     ExhibitionsComponent,
     RegistrationsComponent,
-    BaseComponentComponent  
+    BaseComponent,
+    MuseumComponent  
   ],
   imports: [
     BrowserModule, 
