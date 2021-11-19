@@ -1,14 +1,19 @@
 <div *ngIf="museum" class="museum">
     <div>
         <h1>{{ museum.name }}</h1>
-        <div>
-            <p>Address:</p>
-            <span>{{ museum.city }}</span>
-            <p>{{ museum.address }}</p>
-            <span>{{ museum.openingHours }}</span>
-        </div>
-        <div>
-            <p>{{museum.description}}</p>
+        <div class="museum-info">
+            <div>
+                <!-- <p>Address:</p> -->
+                <span>{{ museum.city }}</span>
+                <p>{{ museum.address }}</p>
+                <p>Opening hours:</p>
+                <span> {{ museum.openingHours }}</span>
+            </div>
+            <div>
+                
+                <p>Description:</p>
+                <span>{{museum.description}}</span>
+            </div>
         </div>
     </div>
 

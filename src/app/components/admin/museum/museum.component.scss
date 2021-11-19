@@ -10,7 +10,22 @@
   max-width: 1000px;
   margin: 2em auto;
 
+  &-info {
+      margin-top:2em;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      div:last-child {
+          max-width: 300px;
+      }
+  }
+
   .exhibitions {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
     table {
       button {
         @include m.buttonStyle(lightblue);
