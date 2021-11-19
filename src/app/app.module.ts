@@ -11,6 +11,12 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ExhibitionComponent } from './components/exhibition/exhibition.component';
+import { AdminPageComponent } from './components/admin/admin-page/admin-page.component';
+import { MuseumsComponent } from './components/admin/museums/museums.component';
+import { ExhibitionsComponent } from './components/admin/exhibitions/exhibitions.component';
+import { RegistrationsComponent } from './components/admin/registrations/registrations.component';
+import { BaseComponentComponent } from './components/base-component/base-component.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,12 +27,18 @@ import { ExhibitionComponent } from './components/exhibition/exhibition.componen
     RegistrationComponent, 
     LoginComponent, 
     MainComponent,
-    ExhibitionComponent  
+    ExhibitionComponent,
+    AdminPageComponent,
+    MuseumsComponent,
+    ExhibitionsComponent,
+    RegistrationsComponent,
+    BaseComponentComponent  
   ],
   imports: [
     BrowserModule, 
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

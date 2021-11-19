@@ -1,0 +1,64 @@
+<div class="museums">
+    <form *ngIf="formVisible" [formGroup]="museumForm" (ngSubmit)=onSubmit()>
+        <div>
+            <label for="id">ID</label>
+            <input id="id" formControlName="id" type="text" readonly>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" type="text">
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input id="city" formControlName="city" type="text">
+        </div>
+        <div>
+            <label for="zip">ZIP</label>
+            <input id="zip" formControlName="zip" type="text">
+        </div>
+        <div>
+            <label for="address">Address</label>
+            <input id="address" formControlName="address" type="text">
+        </div>
+        <div>
+            <label for="openingHours">Opening Hours</label>
+            <input id="openingHours" formControlName="openingHours" type="text">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input id="description" formControlName="description" type="text">
+        </div>
+        <button type="submit" [disabled]="museumForm.invalid">Submit</button>
+        <button (click)="setFormVisibility()" type="button">Cancel</button>
+    </form>
+    <button *ngIf="!formVisible" (click)="setFormVisibility()">Add a New Musuem</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>ZIP</th>
+                <th>Address</th>
+                <th>Opening Hours</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let museum of museums">
+                <td>{{ museum.id }}</td>
+                <td>{{ museum.name }}</td>
+                <td>{{ museum.city }}</td>
+                <td>{{ museum.zip }}</td>
+                <td>{{ museum.address }}</td>
+                <td>{{ museum.openingHours }}</td>
+                <td>{{ museum.description }}</td>
+                <td><button (click)="editMuseum(museum)" >Edit</button></td>
+                <td><button>Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
