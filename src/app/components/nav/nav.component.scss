@@ -1,30 +1,27 @@
+@use "../../app.component" as m;
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.main-nav {
-  background-color: lightblue;
-  display: flex;
-  align-items: center;
-  height: 6vh;
-  padding: 2rem;
-
-  &-list {
-    display: flex;
-    gap: 4.8rem;
-    width: 100%;
-    list-style: none;
-    li:last-child {
-      margin-left: auto;
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: lightblue;
+        @include m.flexAlignCenter();
+        height: 6vh;
+        padding: 2rem;
+        &-list {
+            display: flex;
+            gap: 4.8rem;
+            width: 100%;
+            list-style: none;
+            li:last-child {
+                margin-left: auto;
+            }
+        }
+        &-link:link,
+        &-link:visited {
+            text-decoration: none;
+            font-size: 2rem;
+        }
     }
-  }
-
-  &-link:link,
-  &-link:visited {
-    text-decoration: none;
-    font-size: 2rem;
-  }
 }

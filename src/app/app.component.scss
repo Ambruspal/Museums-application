@@ -7,4 +7,14 @@
     border: none;
     border-radius: 0.5em;
     transition: all 0.3s;
-  }
+}
+
+@mixin flexColumn() {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexAlignCenter() {
+    display: flex;
+    align-items: center;
+}

@@ -1,4 +1,5 @@
-.museum-section {
+@use "../../app.component" as m;
+.museum-container {
     padding: 7rem 5rem;
 }
 
@@ -8,64 +9,53 @@
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin-bottom: 8rem;
-}
-
-// .museum-detail h2 {
-// }
-
-.img-holder {
-    img {
-        display: block;
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 1rem;
+    .img-holder {
+        @include m.flexAlignCenter();
+        img {
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 1em;
+        }
+    }
+    &-details-section {
+        padding: 1rem 2rem;
+        p {
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.8);
+        }
+        .name {
+            color: red;
+            font-size: 3rem;
+        }
+        .datas {
+            @include m.flexColumn();
+            gap: 1rem;
+            margin-top: 3rem;
+            .address,
+            .opening-hours {
+                color: blue;
+                font-size: 2rem;
+            }
+        }
+        .description {
+            margin-top: 4rem;
+            font-size: 2.4rem;
+        }
     }
 }
 
-.museum-details-section {
-    padding: 1rem 2rem;
-}
-
-.address,
-.opening-hours,
-.museum-details-section p {
-    font-size: 2rem;
-    color: rgba(0, 0, 0, 0.8);
-}
-
-.address,
-.opening-hours {
-    color: blue;
-}
-
-.name {
-    color: red;
-    font-size: 3rem;
-}
-
-.datas {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 3rem;
-}
-
-.description {
-    margin-top: 4rem;
-    font-size: 2.4rem;
-}
-
-// List of exhibitions
-.exhibition-list-section h2 {
-    margin: 4.8rem 0 6.66rem;
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 600;
-    text-decoration: underline;
-}
-
-.exhibition-list {
-    display: flex;
-    flex-direction: column;
-    gap: 5.43rem;
+// exhibition-list
+.exhibition-list-section {
+    h2 {
+        margin: 4.8rem 0 6.66rem;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+    .exhibition-list {
+        @include m.flexColumn();
+        gap: 5.43rem;
+    }
 }

@@ -1,37 +1,31 @@
+@use "../../app.component" as m;
 .exhibition {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 4rem;
-}
-
-.exhibition-infos {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-
-.img-holder {
-    display: flex;
-    align-items: center;
-    img {
-        width: 100%;
-        border-radius: 1rem;
+    .img-holder {
+        @include m.flexAlignCenter();
+        img {
+            width: 100%;
+            border-radius: 1.1em;
+        }
     }
-}
-
-.title {
-    font-size: 2.4rem;
-}
-
-.duration,
-.description,
-.price {
-    font-size: 2rem;
-    span {
-        color: green;
+    &-infos {
+        @include m.flexColumn();
+        gap: 1.2rem;
+        .title {
+            font-size: 2.4rem;
+        }
+        .duration,
+        .description,
+        .price {
+            font-size: 2rem;
+            span {
+                color: green;
+            }
+        }
+        .additional-info {
+            font-size: 1.8rem;
+        }
     }
-}
-
-.additional-info {
-    font-size: 1.8rem;
 }

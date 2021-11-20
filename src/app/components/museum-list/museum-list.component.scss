@@ -1,37 +1,30 @@
-.museum-list {
-    display: flex;
-    flex-direction: column;
-}
-
-.exhibitions-intro,
-.museum {
-    height: 15rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.exhibitions-intro,
-.exhibition-name {
-    font-size: 3rem;
-}
-
-.exhibitions-intro {
-    background-color: lightgray;
-    text-align: center;
-}
-
-.museum:nth-child(even) {
-    background-color: lightgreen;
-}
-
-.museum:nth-child(odd) {
-    background-color: lightcoral;
-}
-
-.city-name,
-.museum-name,
-.date {
-    font-size: 2rem;
+@use "../../app.component" as m;
+.museum-list-section {
+    @include m.flexColumn();
+    .intro {
+        background-color: lightgray;
+        text-align: center;
+        font-size: 3rem;
+    }
+    .intro,
+    .museum {
+        @include m.flexColumn();
+        justify-content: center;
+        align-items: center;
+        height: 15rem;
+        .exhibition-name {
+            font-size: 3rem;
+        }
+        .city-name,
+        .museum-name,
+        .date {
+            font-size: 2rem;
+        }
+    }
+    .museum:nth-child(even) {
+        background-color: lightgreen;
+    }
+    .museum:nth-child(odd) {
+        background-color: lightcoral;
+    }
 }
