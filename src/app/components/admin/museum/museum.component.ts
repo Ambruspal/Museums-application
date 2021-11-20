@@ -38,6 +38,10 @@ export class MuseumComponent extends BaseComponent {
     this.getMuseumDetails();
   }
 
+  ngOnDestroy() {
+    super.ngOnDestroy();
+  }
+
   getMuseumDetails(): void {
     this.museumHttpService.getById(this.id)
       .pipe(takeUntil(this.destroy$))
