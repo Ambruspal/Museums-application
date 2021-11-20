@@ -8,9 +8,8 @@
     }
     .intro,
     .museum {
-        @include m.flexColumn();
-        justify-content: center;
-        align-items: center;
+        @include m.flexCenter();
+        flex-direction: column;
         height: 15rem;
         .exhibition-name {
             font-size: 3rem;

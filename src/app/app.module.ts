@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MuseumListComponent } from './components/museum-list/museum-list.component';
 import { MuseumDetailsComponent } from './components/museum-details/museum-details.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ExhibitionComponent } from './components/exhibition/exhibition.component';
@@ -16,17 +16,17 @@ import { MuseumsComponent } from './components/admin/museums/museums.component';
 import { ExhibitionsComponent } from './components/admin/exhibitions/exhibitions.component';
 import { RegistrationsComponent } from './components/admin/registrations/registrations.component';
 import { BaseComponent } from './components/base/base.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MuseumComponent } from './components/admin/museum/museum.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    NavComponent, 
-    MuseumListComponent, 
-    MuseumDetailsComponent, 
-    RegistrationComponent, 
-    LoginComponent, 
+    AppComponent,
+    NavComponent,
+    MuseumListComponent,
+    MuseumDetailsComponent,
+    SignupComponent,
+    LoginComponent,
     MainComponent,
     ExhibitionComponent,
     AdminPageComponent,
@@ -34,13 +34,13 @@ import { MuseumComponent } from './components/admin/museum/museum.component';
     ExhibitionsComponent,
     RegistrationsComponent,
     BaseComponent,
-    MuseumComponent  
+    MuseumComponent,
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

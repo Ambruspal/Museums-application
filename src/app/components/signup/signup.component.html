@@ -1,0 +1,27 @@
+<section class="registration-section">
+    <div class="form-container">
+        <form [formGroup]="registrationForm" (ngSubmit)="register()">
+            <div>
+                <label for="name">Teljes név</label>
+                <input type="text" id="name" formControlName="personName">
+            </div>
+            <div>
+                <label for="category">Látogató státusza</label>
+                <select id="category" formControlName="visitorCategory">
+                    <option *ngFor="let category of visitorCategories; let i = index" [value]="category">
+                        {{categoriesInHungarian[i]}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <label for="time">Időpont</label>
+                <input type="text" id="time" formControlName="visitTime">
+            </div>
+            <div>
+                <label for="price">Ára</label>
+                <input type="number" id="price" formControlName="price">
+            </div>
+            <button type="submit" [disabled]="registrationForm.invalid">Regisztráció</button>
+        </form>
+    </div>
+</section>

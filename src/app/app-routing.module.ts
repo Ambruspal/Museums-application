@@ -4,22 +4,27 @@ import { AdminPageComponent } from './components/admin/admin-page/admin-page.com
 import { ExhibitionsComponent } from './components/admin/exhibitions/exhibitions.component';
 import { MuseumComponent } from './components/admin/museum/museum.component';
 import { MuseumsComponent } from './components/admin/museums/museums.component';
+import { RegistrationsComponent } from './components/admin/registrations/registrations.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { 
-    path: 'admin', component: AdminPageComponent,
+  { path: 'signup', component: SignupComponent },
+  {
+    path: 'admin',
+    component: AdminPageComponent,
     children: [
       { path: 'museums/:id', component: MuseumComponent },
       { path: 'museums', component: MuseumsComponent },
       { path: 'exhibitions', component: ExhibitionsComponent },
-      { path: 'registrations', component: RegistrationComponent }
-    ]
+      {
+        path: 'registrations',
+        component: RegistrationsComponent,
+      },
+    ],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

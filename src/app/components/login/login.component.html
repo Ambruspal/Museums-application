@@ -1,1 +1,15 @@
-<p>login works!</p>
+<section class="login-section">
+    <div class="form-container">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div>
+                <label for="name">Teljes név</label>
+                <input type="text" id="name" formControlName="personName">
+            </div>
+            <div>
+                <label for="password">Jelszó</label>
+                <input type="text" id="password" formControlName="password">
+            </div>
+            <button type="submit" [disabled]="loginForm.invalid">Bejelentkezés</button>
+        </form>
+    </div>
+</section>
