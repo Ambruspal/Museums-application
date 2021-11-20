@@ -1,18 +1,10 @@
 <section class="museum-list-section">
     <div class="intro">
-        <p>Válogasson kedvére kiállításaink közül:</p>
+        <p>Válogasson kedvére a múzeumok között:</p>
     </div>
-    <div class="museum" *ngFor="let museum of museumList$ | async">
+    <div class="museum" *ngFor="let museum of museumList$ | async" (click)="passId(museum.id)">
         <p class="date">{{currentDate}}</p>
         <p class="city-name">{{ museum.city }}</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">{{ museum.name }}</h3>
+        <h2 class="museum-name">{{ museum.name }}</h2>
     </div>
-    <div class="museum">
-        <p class="date">{{currentDate}}</p>
-        <p class="city-name">Város neve</p>
-        <h2 class="exhibition-name">Kiállítás neve</h2>
-        <h3 class="museum-name">Múzeum neve</h3>
-    </div>
-
 </section>

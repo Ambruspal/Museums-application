@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-exhibition',
   templateUrl: './exhibition.component.html',
-  styleUrls: ['./exhibition.component.scss']
+  styleUrls: ['./exhibition.component.scss'],
 })
 export class ExhibitionComponent implements OnInit {
+  @Input() exhibitionInChild: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

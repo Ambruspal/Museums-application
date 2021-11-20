@@ -3,12 +3,13 @@
         <img src="https://images.unsplash.com/photo-1621685743771-fd5e13734ae6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1153&q=80" alt="exhibition-picture">
     </div>
     <div class="exhibition-infos">
-        <h2 class="title">{{ 'TITLE' }}</h2>
-        <p class="duration">{{ 'START' }} - {{ 'END' }}</p>
-        <p class="description">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-            desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <p class="price">Kedvezmények nélküli felnőtt belépő ára: <span>{{ 'FULL-PRICE' }}</span></p>
-        <p class="additional-info">Kapacítás: {{ '10/5' }}</p>
-        <p class="additional-info">Jelentkezett tagok: {{ 'PERSON-NAME, PERSON-NAME, PERSON-NAME, PERSON-NAME, PERSON-NAME' }}</p>
+        <h2 class="title">{{ exhibitionInChild.title }}</h2>
+        <p class="duration">{{ exhibitionInChild.start }} - {{ exhibitionInChild.end }}</p>
+        <p class="description">{{exhibitionInChild.description}}</p>
+        <p class="price">Kedvezmények nélküli felnőtt belépő ára: <span>{{ exhibitionInChild.fullPrice }}</span></p>
+        <p class="additional-info">Kapacítás: {{exhibitionInChild.capacity}}/{{exhibitionInChild.registrations.length}}
+        </p>
+        <p class="additional-info">Jelentkezett tagok: <span *ngFor="let registration of exhibitionInChild.registrations">{{
+                registration.personName }}, </span></p>
     </div>
 </section>

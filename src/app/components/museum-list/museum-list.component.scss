@@ -11,11 +11,10 @@
         @include m.flexCenter();
         flex-direction: column;
         height: 15rem;
-        .exhibition-name {
+        .museum-name {
             font-size: 3rem;
         }
         .city-name,
-        .museum-name,
         .date {
             font-size: 2rem;
         }
