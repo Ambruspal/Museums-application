@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminPageComponent,
     MuseumsComponent,
     ExhibitionsComponent,
+    ExhibitionComponent,
     RegistrationsComponent,
     BaseComponent,
     MuseumComponent,

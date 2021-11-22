@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Exhibition } from 'src/app/models/Exhibition';
 
 @Component({
   selector: 'app-exhibition',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./exhibition.component.scss'],
 })
 export class ExhibitionComponent implements OnInit {
-  @Input() exhibitionInChild: any;
+  @Input() exhibitionInChild?: Exhibition;
 
   constructor() {}
 
