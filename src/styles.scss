@@ -2,18 +2,25 @@
 // 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 // Default settings
+:root {
+    --main-background-color: #fff0de;
+    --secondary-bg-color: #ffd39e;
+    --secondary-text-color: rgba(0, 0, 0, 0.8);
+}
+
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  font-size: 52%;
+    font-size: 52%;
 }
 
 body {
-  font-family: "Lato", sans-serif;
+    font-family: "Lato", sans-serif;
+    color: #222;
 }

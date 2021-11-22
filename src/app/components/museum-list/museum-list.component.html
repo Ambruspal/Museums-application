@@ -3,7 +3,6 @@
         <p>Válogasson kedvére a múzeumok között:</p>
     </div>
     <div class="museum" *ngFor="let museum of museumList$ | async" (click)="passId(museum.id)">
-        <p class="date">{{currentDate}}</p>
         <p class="city-name">{{ museum.city }}</p>
         <h2 class="museum-name">{{ museum.name }}</h2>
     </div>

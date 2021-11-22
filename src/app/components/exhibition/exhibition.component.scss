@@ -13,19 +13,20 @@
     &-infos {
         @include m.flexColumn();
         gap: 1.2rem;
+        color: var(--secondary-text-color);
         .title {
-            font-size: 2.4rem;
+            font-size: 2.6rem;
         }
         .duration,
         .description,
         .price {
-            font-size: 2rem;
+            font-size: 2.2rem;
             span {
                 color: green;
             }
         }
         .additional-info {
-            font-size: 1.8rem;
+            font-size: 2rem;
         }
     }
 }

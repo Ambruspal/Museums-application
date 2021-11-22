@@ -1,17 +1,17 @@
 @use "../../app.component" as m;
 .registration-section {
-    margin-top: 6vh;
-    height: 94vh;
+    background-color: var(--main-background-color);
+    height: 69vh;
     @include m.flexCenter();
     .form-container {
-        background-color: lightblue;
+        background-color: var(--secondary-bg-color);
         @include m.flexCenter();
         width: 40%;
-        height: 65%;
+        height: 88.3%;
         border-radius: 5rem;
         form {
             width: 80%;
-            height: 80%;
+            height: 100%;
             @include m.flexCenter();
             flex-direction: column;
             gap: 3rem;
@@ -19,7 +19,7 @@
                 width: 100%;
                 label {
                     display: block;
-                    color: rgba(0, 0, 0, 0.8);
+                    color: var(--secondary-text-color);
                     font-size: 2.4rem;
                     text-align: center;
                     margin-bottom: 1rem;

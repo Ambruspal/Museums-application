@@ -2,8 +2,6 @@
 .museum-list-section {
     @include m.flexColumn();
     .intro {
-        background-color: lightgray;
-        text-align: center;
         font-size: 3rem;
     }
     .intro,
@@ -11,19 +9,23 @@
         @include m.flexCenter();
         flex-direction: column;
         height: 15rem;
+        border-radius: 1rem;
+        padding: 1rem;
+        text-align: center;
         .museum-name {
             font-size: 3rem;
+            color: #333;
         }
-        .city-name,
-        .date {
-            font-size: 2rem;
+        .city-name {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
         }
     }
     .museum:nth-child(even) {
-        background-color: lightgreen;
+        background-color: #ffe5c5;
     }
     .museum:nth-child(odd) {
-        background-color: lightcoral;
+        background-color: var(--secondary-bg-color);
     }
     .museum:hover {
         cursor: pointer;

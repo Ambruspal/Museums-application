@@ -10,7 +10,7 @@ import { SubjectService } from 'src/app/services/subject/subject.service';
   styleUrls: ['./museum-list.component.scss'],
 })
 export class MuseumListComponent implements OnInit {
-  currentDate: string = new Date().toLocaleDateString();
+  // currentDate: string = new Date().toLocaleDateString();
 
   constructor(
     private museumHttpService: MuseumHttpService,
