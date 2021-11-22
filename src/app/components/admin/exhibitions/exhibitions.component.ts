@@ -23,6 +23,10 @@ export class ExhibitionsComponent extends BaseComponent {
     this.getExhibitons();
   }
 
+  ngOnDestroy() {
+    super.ngOnDestroy();
+  }
+
   getExhibitons(): void {
     this.exhibitionHttpService.getAll()
       .pipe(takeUntil(this.destroy$))

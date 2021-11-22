@@ -35,6 +35,10 @@ export class MuseumsComponent extends BaseComponent {
     this.createForm();
   }
 
+  ngOnDestroy() {
+    super.ngOnDestroy();
+  }
+
   getAllMuseums(): void {
     this.museumHttpService
       .getAll()
