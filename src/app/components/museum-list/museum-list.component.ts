@@ -23,5 +23,13 @@ export class MuseumListComponent implements OnInit {
 
   passId(id: number | undefined) {
     this.subjectService.communicationSubject.next(id);
+    this.scrollUpSmoothly();
+  }
+
+  scrollUpSmoothly() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 }

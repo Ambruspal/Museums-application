@@ -25,4 +25,7 @@
     .museum:nth-child(odd) {
         background-color: lightcoral;
     }
+    .museum:hover {
+        cursor: pointer;
+    }
 }

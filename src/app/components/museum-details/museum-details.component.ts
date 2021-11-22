@@ -15,7 +15,6 @@ export class MuseumDetailsComponent
   implements OnInit, OnDestroy
 {
   currentMuseum!: Museum;
-  receivedId?: number | undefined;
 
   constructor(
     private museumHttpService: MuseumHttpService,
@@ -30,12 +29,13 @@ export class MuseumDetailsComponent
     // Get museum by id from museum-list on click
     this.subjectService.communicationSubject
       .pipe(takeUntil(this.destroy$))
-      .subscribe((id: number | undefined) => {
-        this.getMuseumById(id);
-      });
+      .subscribe(
+        (id: number | undefined) => this.getMuseumById(id),
+        (err) => console.error(err.message)
+      );
   }
 
-  getDefaultMuseum(): void {
+  getDefaultMuseum() {
     this.museumHttpService
       .getById('2')
       .pipe(takeUntil(this.destroy$))
@@ -45,7 +45,7 @@ export class MuseumDetailsComponent
       );
   }
 
-  getMuseumById(id: number | undefined): void {
+  getMuseumById(id: number | undefined) {
     this.museumHttpService
       .getById(String(id))
       .pipe(takeUntil(this.destroy$))
