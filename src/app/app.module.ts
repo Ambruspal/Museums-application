@@ -11,12 +11,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ExhibitionComponent } from './components/exhibition/exhibition.component';
-import { AdminPageComponent } from './components/admin/admin-page/admin-page.component';
-import { MuseumsComponent } from './components/admin/museums/museums.component';
-import { ExhibitionsComponent } from './components/admin/exhibitions/exhibitions.component';
-import { RegistrationsComponent } from './components/admin/registrations/registrations.component';
 import { BaseComponent } from './components/base/base.component';
-import { MuseumComponent } from './components/admin/museum/museum.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -29,13 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     MainComponent,
     ExhibitionComponent,
-    AdminPageComponent,
-    MuseumsComponent,
-    ExhibitionsComponent,
     ExhibitionComponent,
-    RegistrationsComponent,
     BaseComponent,
-    MuseumComponent,
   ],
   imports: [
     BrowserModule,
