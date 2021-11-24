@@ -14,14 +14,14 @@ import { Exhibition } from 'src/app/models/Exhibition';
 export class MuseumsComponent extends BaseComponent {
   museums: Museum[] = [];
 
+  filteredList: Museum[] = [];
+
   cityList?: string[];
   nameList?: string[];
 
   city: FormControl = new FormControl('city');
   name: FormControl = new FormControl('name');
 
-  selectedCity = '';
-  selectedName = '';
 
   formVisible = false;
   readonly = false;
@@ -49,54 +49,58 @@ export class MuseumsComponent extends BaseComponent {
   updateMuseumList(): void {
     this.city.valueChanges
       .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (activeCity:string) => {
-          this.selectedCity = activeCity;
-          this.selectedName = '';
-          this.getAllMuseums();
+      .subscribe({
+        next: (selectedCity: string) => {
+          this.filteredList = this.museums.filter(m => m.city === selectedCity);
+          this.nameList = this.filteredList
+            .map((m) => m.name)
+            .sort();
         },
-        err => alert(err.message),
-        () => console.log('unsubsribed from museum city valueChanges')
-      )
+        error: (err) => alert(err.message),
+        complete: () => console.log('unsubsribed from museum city valueChanges')
+      })
     this.name.valueChanges
       .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (activeName:string) => {
-          this.selectedName = activeName;
-          this.getAllMuseums();
+      .subscribe({
+        next: (selectedName: string) => {
+          this.filteredList = this.filteredList.filter(m => m.name === selectedName);
         },
-        err => alert(err.message),
-        () => console.log('unsubsribed from museum name valueChanges')
-      )
+        error: err => alert(err.message),
+        complete: () => console.log('unsubsribed from museum name valueChanges')
+      })
   }
 
   clearFilters() {
-    this.selectedCity = '';
-    this.selectedName = '';
-    this.city.setValue(this.selectedCity);
-    this.name.setValue(this.selectedName);
+    this.city.setValue('city');
+    this.name.setValue('name');
+    this.filteredList = [...this.museums];
+    
+    this.nameList = this.museums
+            .map((m) => m.name)
+            .sort();
+    
   }
 
-  getAllMuseums(city = this.selectedCity, name = this.selectedName): void {
-    const query = { city, name };
+  getAllMuseums(): void {
+    // const query = { city, name };
     this.museumHttpService
-      .getAll(query)
+      .getAll()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (museumList: Museum[]) => {
+      .subscribe({
+        next: (museumList: Museum[]) => {
           this.museums = museumList;
-
+          this.filteredList = [...this.museums];
           if (!this.cityList || !this.cityList.length) {
             const cities = this.museums.map((m) => m.city);
             this.cityList = [...new Set(cities)].sort();
           }
 
-          const names = this.museums
+          this.nameList = this.museums
             .map((m) => m.name)
             .sort();
-          this.nameList = names;
         },
-        (err) => alert(err.message)
+        error:(err) => alert(err.message)
+        }
       );
   }
 

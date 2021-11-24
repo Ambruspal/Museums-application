@@ -30,13 +30,13 @@ export class ExhibitionsComponent extends BaseComponent {
   getExhibitons(): void {
     this.exhibitionHttpService.getAll()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (exhibitionList: Exhibition[]) => {
+      .subscribe({
+        next: (exhibitionList: Exhibition[]) => {
           this.exhibitions = exhibitionList;
           console.log(this.exhibitions);
         },
-        err => alert(err.message)
-      )
+        error: err => alert(err.message)
+      });
   }
 
 }

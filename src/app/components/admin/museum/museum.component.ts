@@ -45,14 +45,14 @@ export class MuseumComponent extends BaseComponent {
   getMuseumDetails(): void {
     this.museumHttpService.getById(this.id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (returnedMuseum: Museum) => {
+      .subscribe({
+        next: (returnedMuseum: Museum) => {
           this.museum = returnedMuseum;
           console.log(this.museum);
         },
-        err => alert(err.message),
-        () => this.createForm()
-      )
+        error: (err) => alert(err.message),
+        complete: () => this.createForm()
+      })
   }
 
   createForm(): void {

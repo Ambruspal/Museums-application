@@ -61,7 +61,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let museum of museums">
+            <tr *ngFor="let museum of filteredList">
                 <td>{{ museum.id }}</td>
                 <td><a [routerLink]="['/admin/museums', museum.id]">{{ museum.name }}</a></td>
                 <td>{{ museum.city }}</td>
