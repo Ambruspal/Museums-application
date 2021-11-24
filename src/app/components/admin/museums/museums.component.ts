@@ -3,7 +3,7 @@ import { Museum } from 'src/app/models/Museum';
 import { MuseumHttpService } from 'src/app/services/http/museum-http.service';
 import { BaseComponent } from '../../base/base.component';
 import { takeUntil } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Exhibition } from 'src/app/models/Exhibition';
 
 @Component({
@@ -14,14 +14,20 @@ import { Exhibition } from 'src/app/models/Exhibition';
 export class MuseumsComponent extends BaseComponent {
   museums: Museum[] = [];
 
+  cityList?: string[];
+  nameList?: string[];
 
+  city: FormControl = new FormControl('city');
+  name: FormControl = new FormControl('name');
+
+  selectedCity = '';
+  selectedName = '';
 
   formVisible = false;
   readonly = false;
 
- 
-
   museumForm!: FormGroup;
+
 
   constructor(
     private museumHttpService: MuseumHttpService,
@@ -32,6 +38,7 @@ export class MuseumsComponent extends BaseComponent {
 
   ngOnInit(): void {
     this.getAllMuseums();
+    this.updateMuseumList();
     this.createForm();
   }
 
@@ -39,14 +46,55 @@ export class MuseumsComponent extends BaseComponent {
     super.ngOnDestroy();
   }
 
-  getAllMuseums(): void {
+  updateMuseumList(): void {
+    this.city.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (activeCity:string) => {
+          this.selectedCity = activeCity;
+          this.selectedName = '';
+          this.getAllMuseums();
+        },
+        err => alert(err.message),
+        () => console.log('unsubsribed from museum city valueChanges')
+      )
+    this.name.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (activeName:string) => {
+          this.selectedName = activeName;
+          this.getAllMuseums();
+        },
+        err => alert(err.message),
+        () => console.log('unsubsribed from museum name valueChanges')
+      )
+  }
+
+  clearFilters() {
+    this.selectedCity = '';
+    this.selectedName = '';
+    this.city.setValue(this.selectedCity);
+    this.name.setValue(this.selectedName);
+  }
+
+  getAllMuseums(city = this.selectedCity, name = this.selectedName): void {
+    const query = { city, name };
     this.museumHttpService
-      .getAll()
+      .getAll(query)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (museumList: Museum[]) => {
           this.museums = museumList;
-          console.log(this.museums)
+
+          if (!this.cityList || !this.cityList.length) {
+            const cities = this.museums.map((m) => m.city);
+            this.cityList = [...new Set(cities)].sort();
+          }
+
+          const names = this.museums
+            .map((m) => m.name)
+            .sort();
+          this.nameList = names;
         },
         (err) => alert(err.message)
       );
@@ -63,6 +111,8 @@ export class MuseumsComponent extends BaseComponent {
       description: ['', Validators.required],
     });
   }
+
+
 
   setFormVisibility(): void {
     this.formVisible = !this.formVisible;
@@ -114,14 +164,15 @@ export class MuseumsComponent extends BaseComponent {
       this.museumHttpService
         .create(newMuseum)
         .pipe(takeUntil(this.destroy$))
-        .subscribe((savedMuseum: Museum) => {
-          if (savedMuseum) {
-            this.museums = [...this.museums, savedMuseum];
-          } else {
-            throw new Error('something went wrong');
-          }
-        },
-        (error: any) => alert(error.message),
+        .subscribe(
+          (savedMuseum: Museum) => {
+            if (savedMuseum) {
+              this.museums = [...this.museums, savedMuseum];
+            } else {
+              throw new Error('something went wrong');
+            }
+          },
+          (error: any) => alert(error.message),
           () => {
             this.museumForm.reset();
             this.readonly = false;
@@ -140,21 +191,22 @@ export class MuseumsComponent extends BaseComponent {
   }
 
   deleteMuseum(id: number | undefined, name: string): void {
-    const confirmed = confirm(`You are about to delete: ${name}. Are you sure?`);
+    const confirmed = confirm(
+      `You are about to delete: ${name}. Are you sure?`
+    );
     if (confirmed && id) {
-      this.museumHttpService.deleteById(id.toString())
+      this.museumHttpService
+        .deleteById(id.toString())
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           () => console.log(`Museum: ${name} has been deleted`),
-          err => alert(err.message),
+          (err) => alert(err.message),
           () => {
-            this.museums = this.museums.filter(m => m.id !== Number(id));
+            this.museums = this.museums.filter((m) => m.id !== Number(id));
           }
-        )
+        );
     } else {
       return;
     }
   }
-
-  
 }

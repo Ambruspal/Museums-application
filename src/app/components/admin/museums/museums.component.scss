@@ -10,6 +10,28 @@
     max-width: 1000px;
     margin: 2em auto;
 
+    &-filter {
+        display: flex;
+        gap: 1em;
+        justify-content: space-between;
+        align-items: baseline;
+
+        select {
+            padding: .5em;
+            border-radius: .5em;
+        }
+    }
+
+    &-clear-filters {
+        @include m.buttonStyle(yellow, blue);
+        width: 20%;
+
+        &:hover {
+            background-color: orange;
+            color: black;
+        }
+    }
+
     &-add {
         @include m.buttonStyle;
         width: 20%;

@@ -4,24 +4,25 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BaseHttpService<E> {
-
   baseUrl: string = environment.apiUrl;
   entity: string = '';
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {}
 
-  getAll(query:any = {}): Observable<E[]> {
+  getAll(query: any = {}): Observable<E[]> {
     let queryString = '';
     if (query !== {}) {
-      queryString = '?'
+      queryString = '?';
       for (const key in query) {
-        queryString += `${key}=${query[key]}&`
+        if (query[key]) {
+          queryString += `${key}=${query[key]}&`;
+        }
       }
     }
-    return this.http.get<E[]>(`${this.baseUrl}${this.entity}${queryString}`)
+    return this.http.get<E[]>(`${this.baseUrl}${this.entity}${queryString}`);
   }
 
   getById(id: string): Observable<E> {
@@ -33,10 +34,13 @@ export class BaseHttpService<E> {
   }
 
   updateById(updatedEntity: E, id: string): Observable<E> {
-    return this.http.put<E>(`${this.baseUrl}${this.entity}/${id}`, updatedEntity);
+    return this.http.put<E>(
+      `${this.baseUrl}${this.entity}/${id}`,
+      updatedEntity
+    );
   }
 
   deleteById(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}${this.entity}/${id}`)
+    return this.http.delete(`${this.baseUrl}${this.entity}/${id}`);
   }
 }
