@@ -9,9 +9,10 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'museum-details/:id', component: MuseumDetailsComponent },
   {
-    path: 'admin', loadChildren: () => import('./components/admin/admin.module').then((m) => m.AdminModule)
+    path: 'admin',
+    loadChildren: () =>
+      import('./components/admin/admin.module').then((m) => m.AdminModule),
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

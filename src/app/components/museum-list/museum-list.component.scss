@@ -3,6 +3,29 @@
     @include m.flexColumn();
     .intro {
         font-size: 3rem;
+        .filter-container {
+            @include m.flexCenter();
+            gap: 2rem;
+            margin-top: 1rem;
+            select {
+                margin: 0 auto;
+                padding: 0.5rem;
+                width: 43%;
+                height: 3rem;
+                border: none;
+                border-radius: 0.75rem;
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            select:focus {
+                outline: none;
+            }
+            button {
+                @include m.buttonStyle(var(--secondary-bg-color), #222);
+                font-weight: 500;
+                padding: 0.4em 0;
+            }
+        }
     }
     .intro,
     .museum {
