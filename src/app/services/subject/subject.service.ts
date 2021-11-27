@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class SubjectService {
-  communicationSubject = new Subject<number | undefined>();
+  idSubject = new Subject<number | undefined>();
 
   constructor() {}
 }

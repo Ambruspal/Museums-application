@@ -24,28 +24,14 @@ export class MuseumDetailsComponent
   }
 
   ngOnInit(): void {
-    // Get default (first) museum
-    this.getDefaultMuseum();
-    // Get museum by id from museum-list on click
-    this.subjectService.communicationSubject
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (id: number | undefined) => this.getMuseumById(id),
-        (err) => console.error(err.message)
-      );
+    // Get museum by id from museum-list
+    this.subjectService.idSubject.pipe(takeUntil(this.destroy$)).subscribe(
+      (id: number | undefined) => this.getMuseumById(id),
+      (err) => console.error(err.message)
+    );
   }
 
-  getDefaultMuseum() {
-    this.museumHttpService
-      .getById('2')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (gottenMuseum: Museum) => (this.currentMuseum = gottenMuseum),
-        (err) => console.error(err.message)
-      );
-  }
-
-  getMuseumById(id: number | undefined) {
+  private getMuseumById(id: number | undefined): void {
     this.museumHttpService
       .getById(String(id))
       .pipe(takeUntil(this.destroy$))

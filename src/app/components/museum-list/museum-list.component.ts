@@ -43,25 +43,26 @@ export class MuseumListComponent
         (err) => console.error(err.message),
         () => {
           this.filteredList = this.museumList.slice();
+          // Load first museum
+          this.passId(this.filteredList[0].id);
 
           this.cityList = [
-            ...new Set(this.museumList.map((museum) => museum.city)),
+            ...new Set(this.filteredList.map((museum) => museum.city)),
           ].sort();
-
-          this.nameList = this.museumList.map((museum) => museum.name).sort();
+          this.renderNameList();
         }
       );
 
-    // Update filtered list on select (on value chenges)
+    // Update filteredList and nameList on select, plus load new first museum
     // city
     this.city.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(
       (selectedCity: string) => {
         this.filteredList = this.museumList.filter(
           (museum) => museum.city === selectedCity
         );
-
+        this.passId(this.filteredList[0].id);
+        this.renderNameList();
         if (this.name.value !== 'név szerint') this.clearNameValue();
-
         this.isResetButtonActive = true;
       },
       (err) => console.error(err.message)
@@ -72,9 +73,7 @@ export class MuseumListComponent
         this.filteredList = this.museumList.filter(
           (museum) => museum.name === selectedName
         );
-
-        if (this.city.value !== 'város szerint') this.clearCityValue();
-
+        this.passId(this.filteredList[0].id);
         this.isResetButtonActive = true;
       },
       (err) => console.error(err.message)
@@ -85,12 +84,19 @@ export class MuseumListComponent
     this.clearCityValue();
     this.clearNameValue();
     this.filteredList = this.museumList.slice();
+    this.renderNameList();
+    // Load new first museum
+    this.passId(this.filteredList[0].id);
     this.isResetButtonActive = false;
   }
 
   passId(id: number | undefined): void {
-    this.subjectService.communicationSubject.next(id);
+    this.subjectService.idSubject.next(id);
     this.scrollUpSmoothly();
+  }
+
+  private renderNameList(): void {
+    this.nameList = this.filteredList.map((museum) => museum.name).sort();
   }
 
   private clearCityValue(): void {

@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  register() {
+  register(): void {
     console.log(this.registrationForm.controls.visitorCategory.value);
   }
 }
