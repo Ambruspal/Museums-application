@@ -64,7 +64,7 @@ export class MuseumsComponent extends BaseComponent {
             m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             m.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
             m.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            m.zip.includes(this.searchTerm) ||
+            m.zip.includes(searchTerm) ||
             m.description.toLowerCase().includes(searchTerm.toLowerCase())
           ) {
             return m;
