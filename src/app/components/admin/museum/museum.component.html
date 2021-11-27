@@ -18,7 +18,11 @@
     </div>
 
     <div class="exhibitions">
-        <h2>Exhibitions</h2>
+        <div class="exhibitions-title">
+            <h2>Exhibitions</h2>
+            <button routerLink="/admin/museums" >Go back</button>
+        </div>
+        
         <p *ngIf="!museum.exhibitions.length">This museum has currently no exhibitions.</p>
 
         <table *ngIf="museum.exhibitions.length">

@@ -57,15 +57,15 @@
     //     }
     // }
 
-    &-clear-filters {
-        @include m.buttonStyle(yellow, blue);
-        width: 20%;
+    // &-clear-filters {
+    //     @include m.buttonStyle(yellow, blue);
+    //     width: 20%;
 
-        &:hover {
-            background-color: orange;
-            color: black;
-        }
-    }
+    //     &:hover {
+    //         background-color: orange;
+    //         color: black;
+    //     }
+    // }
 
     &-add {
         @include m.buttonStyle;
@@ -120,6 +120,16 @@
     }
 
     table {
+
+        tbody {
+            tr {
+                td {
+                    padding: 1em 0;
+                    line-height: 2.5rem;
+                }
+            }
+        }
+
         button {
             @include m.buttonStyle(lightblue);
 
