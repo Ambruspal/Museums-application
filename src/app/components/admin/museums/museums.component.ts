@@ -49,6 +49,8 @@ export class MuseumsComponent extends BaseComponent {
   filterMuseums(): void {
     this.filteredList = this.museums;
     
+    this.searchTerm = this.searchTerm.trim();
+
     if (!this.searchTerm) {
       this.numOfResults = this.filteredList.length;
     } 
