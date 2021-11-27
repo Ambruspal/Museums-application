@@ -7,7 +7,7 @@ import { MuseumComponent } from './museum/museum.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { RouterModule } from '@angular/router';
 import { ADMIN_ROUTES } from './admin.routes';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule.forChild(ADMIN_ROUTES),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

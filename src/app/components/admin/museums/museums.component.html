@@ -33,7 +33,7 @@
         <button (click)="setFormVisibility()" type="button">Cancel</button>
     </form>
     <button class="museums-add" *ngIf="!formVisible" (click)="setFormVisibility()">Add a New Museum</button>
-    <div  class="museums-filter">Filter results by: 
+    <!-- <div  class="museums-filter">Filter results by: 
         <select [formControl]="city" >
             <option selected disabled>city</option>
             <option *ngFor="let city of cityList" [value]="city">{{ city }}</option>
@@ -44,6 +44,11 @@
             <option *ngFor="let name of nameList" [value]="name">{{ name }}</option>
         </select>
         <button class="museums-clear-filters" (click)="clearFilters()">Clear filters</button>
+    </div> -->
+    <div class="museums-search">
+        <label for="filter">Search</label>
+        <input [(ngModel)]="searchTerm" id="filter"  (input)="filterMuseums()" placeholder="for anything">
+        <span>Results: {{numOfResults}}</span>
     </div>
     <table>
         <thead>

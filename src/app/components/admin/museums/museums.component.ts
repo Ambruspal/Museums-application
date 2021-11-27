@@ -3,7 +3,12 @@ import { Museum } from 'src/app/models/Museum';
 import { MuseumHttpService } from 'src/app/services/http/museum-http.service';
 import { BaseComponent } from '../../base/base.component';
 import { takeUntil } from 'rxjs/operators';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Exhibition } from 'src/app/models/Exhibition';
 
 @Component({
@@ -14,20 +19,16 @@ import { Exhibition } from 'src/app/models/Exhibition';
 export class MuseumsComponent extends BaseComponent {
   museums: Museum[] = [];
 
+  searchTerm: string = '';
+
   filteredList: Museum[] = [];
-
-  cityList?: string[];
-  nameList?: string[];
-
-  city: FormControl = new FormControl('city');
-  name: FormControl = new FormControl('name');
-
 
   formVisible = false;
   readonly = false;
 
-  museumForm!: FormGroup;
+  numOfResults?: number;
 
+  museumForm!: FormGroup;
 
   constructor(
     private museumHttpService: MuseumHttpService,
@@ -38,7 +39,6 @@ export class MuseumsComponent extends BaseComponent {
 
   ngOnInit(): void {
     this.getAllMuseums();
-    this.updateMuseumList();
     this.createForm();
   }
 
@@ -46,40 +46,77 @@ export class MuseumsComponent extends BaseComponent {
     super.ngOnDestroy();
   }
 
-  updateMuseumList(): void {
-    this.city.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (selectedCity: string) => {
-          this.filteredList = this.museums.filter(m => m.city === selectedCity);
-          this.nameList = this.filteredList
-            .map((m) => m.name)
-            .sort();
-        },
-        error: (err) => alert(err.message),
-        complete: () => console.log('unsubsribed from museum city valueChanges')
-      })
-    this.name.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (selectedName: string) => {
-          this.filteredList = this.filteredList.filter(m => m.name === selectedName);
-        },
-        error: err => alert(err.message),
-        complete: () => console.log('unsubsribed from museum name valueChanges')
-      })
+  filterMuseums(): void {
+    this.filteredList = this.museums;
+    
+    if (!this.searchTerm) {
+      this.numOfResults = this.filteredList.length;
+    } 
+    
+    else if (this.searchTerm.includes(' ')) {
+      const searchTermList = this.searchTerm.split(' ');
+
+      for (const searchTerm of searchTermList) {
+        this.filteredList = this.filteredList.filter((m) => {
+          if (
+            m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            m.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            m.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            m.zip.includes(this.searchTerm) ||
+            m.description.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            return m;
+          }
+          return null;
+        });
+      }
+    } 
+    
+    else {
+      this.filteredList = this.filteredList.filter((m) => {
+        if (
+          m.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          m.city.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          m.address.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          m.zip.includes(this.searchTerm) ||
+          m.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+        ) {
+          return m;
+        }
+        return null;
+      });
+    }
+
+    this.numOfResults = this.filteredList.length;
   }
 
-  clearFilters() {
-    this.city.setValue('city');
-    this.name.setValue('name');
-    this.filteredList = [...this.museums];
-    
-    this.nameList = this.museums
-            .map((m) => m.name)
-            .sort();
-    
-  }
+  // updateMuseumList(): void {
+  //   this.city.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
+  //     next: (selectedCity: string) => {
+  //       this.filteredList = this.museums.filter((m) => m.city === selectedCity);
+  //       this.nameList = this.filteredList.map((m) => m.name).sort();
+  //     },
+  //     error: (err) => alert(err.message),
+  //     complete: () => console.log('unsubsribed from museum city valueChanges'),
+  //   });
+  //   this.name.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
+  //     next: (selectedName: string) => {
+  //       this.filteredList = this.filteredList.filter(
+  //         (m) => m.name === selectedName
+  //       );
+  //     },
+  //     error: (err) => alert(err.message),
+  //     complete: () => console.log('unsubsribed from museum name valueChanges'),
+  //   });
+  // }
+
+  // clearFilters() {
+  //   this.city.setValue('city');
+  //   this.name.setValue('name');
+  //   this.filteredList = [...this.museums];
+
+  //   this.nameList = this.museums.map((m) => m.name).sort();
+  // }
 
   getAllMuseums(): void {
     // const query = { city, name };
@@ -89,19 +126,17 @@ export class MuseumsComponent extends BaseComponent {
       .subscribe({
         next: (museumList: Museum[]) => {
           this.museums = museumList;
+          this.numOfResults = this.museums.length;
           this.filteredList = [...this.museums];
-          if (!this.cityList || !this.cityList.length) {
-            const cities = this.museums.map((m) => m.city);
-            this.cityList = [...new Set(cities)].sort();
-          }
+          // if (!this.cityList || !this.cityList.length) {
+          //   const cities = this.museums.map((m) => m.city);
+          //   this.cityList = [...new Set(cities)].sort();
+          // }
 
-          this.nameList = this.museums
-            .map((m) => m.name)
-            .sort();
+          // this.nameList = this.museums.map((m) => m.name).sort();
         },
-        error:(err) => alert(err.message)
-        }
-      );
+        error: (err) => console.error(err),
+      });
   }
 
   createForm(): void {
@@ -115,8 +150,6 @@ export class MuseumsComponent extends BaseComponent {
       description: ['', Validators.required],
     });
   }
-
-
 
   setFormVisibility(): void {
     this.formVisible = !this.formVisible;

@@ -10,17 +10,52 @@
     max-width: 1000px;
     margin: 2em auto;
 
-    &-filter {
-        display: flex;
-        gap: 1em;
-        justify-content: space-between;
+    &-search {
+        display: grid;
+        grid-template-columns: auto 1fr 1fr;
+        column-gap: 1em;
+        width: 100%;
         align-items: baseline;
 
-        select {
-            padding: .5em;
-            border-radius: .5em;
+        label, span {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        input {
+            border-radius: 5px;
+            padding: 5px 10px;
+            border-color: green;
+            border-top: 1px solid lightgreen;
+            border-left: 1px solid lightgreen;
+            border-right: 1px solid lightgreen;
+            border-bottom: 2px solid green;
+            font-size: 1.7rem;
+            transition: all 300ms;
+
+            &:focus {
+                outline: none;
+                background-color: lightgreen;
+                font-weight: bold;
+            }
+
+            &::placeholder {
+                font-size: 1.7rem;
+            }
         }
     }
+
+    // &-filter {
+    //     display: flex;
+    //     gap: 1em;
+    //     justify-content: space-between;
+    //     align-items: baseline;
+
+    //     select {
+    //         padding: .5em;
+    //         border-radius: .5em;
+    //     }
+    // }
 
     &-clear-filters {
         @include m.buttonStyle(yellow, blue);
