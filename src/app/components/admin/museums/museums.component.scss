@@ -1,150 +1,112 @@
-@use '../../../app.component' as m;
+@use "../../../app.component" as m;
 
 .museums {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  min-width: 250px;
+  max-width: 1000px;
+  &-search {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    column-gap: 1em;
+    width: 100%;
+    align-items: baseline;
+
+    label,
+    span {
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    input {
+      border-radius: 5px;
+      padding: 5px 10px;
+      border-color: green;
+      border-top: 1px solid lightgreen;
+      border-left: 1px solid lightgreen;
+      border-right: 1px solid lightgreen;
+      border-bottom: 2px solid green;
+      font-size: 1.7rem;
+      transition: all 300ms;
+
+      &:focus {
+        outline: none;
+        background-color: lightgreen;
+        font-weight: bold;
+      }
+
+      &::placeholder {
+        font-size: 1.7rem;
+      }
+    }
+  }
+
+  &-add {
+    @include m.buttonStyle;
+    width: 12em;
+
+    &:hover {
+      background-color: green;
+      color: white;
+    }
+  }
+
+  form {
     display: flex;
     flex-direction: column;
-    gap: 2em;
-    width: 80%;
-    min-width: 250px;
-    max-width: 1000px;
-    margin: 2em auto;
+    gap: 1em;
 
-    &-search {
-        display: grid;
-        grid-template-columns: auto 1fr 1fr;
-        column-gap: 1em;
-        width: 100%;
-        align-items: baseline;
-
-        label, span {
-            font-weight: bold;
-            font-size: 2rem;
-        }
-
-        input {
-            border-radius: 5px;
-            padding: 5px 10px;
-            border-color: green;
-            border-top: 1px solid lightgreen;
-            border-left: 1px solid lightgreen;
-            border-right: 1px solid lightgreen;
-            border-bottom: 2px solid green;
-            font-size: 1.7rem;
-            transition: all 300ms;
-
-            &:focus {
-                outline: none;
-                background-color: lightgreen;
-                font-weight: bold;
-            }
-
-            &::placeholder {
-                font-size: 1.7rem;
-            }
-        }
+    label {
+      font-weight: bold;
     }
 
-    // &-filter {
-    //     display: flex;
-    //     gap: 1em;
-    //     justify-content: space-between;
-    //     align-items: baseline;
+    input,
+    textarea {
+      border-radius: 0.5em;
 
-    //     select {
-    //         padding: .5em;
-    //         border-radius: .5em;
-    //     }
-    // }
+      &:read-only {
+        background-color: gray;
+        color: white;
+      }
+    }
 
-    // &-clear-filters {
-    //     @include m.buttonStyle(yellow, blue);
-    //     width: 20%;
+    button {
+      @include m.buttonStyle;
+      width: 50%;
 
-    //     &:hover {
-    //         background-color: orange;
-    //         color: black;
-    //     }
-    // }
+      &:disabled {
+        cursor: not-allowed;
+      }
 
-    &-add {
-        @include m.buttonStyle;
-        width: 20%;
+      &:hover:not(:disabled) {
+        background-color: green;
+        color: white;
+      }
+
+      &:last-child {
+        @include m.buttonStyle(lightgrey);
 
         &:hover {
-            background-color: green;
-            color: white;
+          background: grey;
         }
+      }
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
 
-        input, textarea {
-            border-radius: .5em;
-        }
-
-        button {
-            @include m.buttonStyle;
-            width: 50%;
-
-            &:disabled {
-                cursor: not-allowed;
-            }
-
-            &:hover:not(:disabled) {
-                background-color: green;
-                color: white;
-            }
-
-            &:last-child {
-                @include m.buttonStyle(lightgrey);
-
-                &:hover {
-                    background: grey;
-                }
-            }
-        }
-
-        div {
-            display: flex;
-            flex-direction: column;
-            width: 50%;
-
-            input, textarea {
-                padding: .5em;
-            }
-        }
+      input,
+      textarea {
+        padding: 0.5em;
+      }
     }
+  }
 
-    table {
+  @include m.formatTable()
 
-        tbody {
-            tr {
-                td {
-                    padding: 1em 0;
-                    line-height: 2.5rem;
-                }
-            }
-        }
 
-        button {
-            @include m.buttonStyle(lightblue);
-
-            &:hover {
-                background: blue;
-                color: white;
-            }
-
-            &.delete {
-                background: pink;
-            
-                &:hover {
-                    background: red;
-                }
-            }
-        }
-    }
 }

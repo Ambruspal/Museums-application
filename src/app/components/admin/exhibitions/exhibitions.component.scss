@@ -1,0 +1,5 @@
+@use "../../../app.component" as m;
+
+.exhibitions {
+    @include m.formatTable()
+}

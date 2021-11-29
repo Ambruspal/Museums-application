@@ -25,3 +25,50 @@
     display: flex;
     align-items: center;
 }
+
+@mixin formatTable () {
+    table {
+        border-spacing: 0;
+        thead {
+          background-color: rebeccapurple;
+          color: wheat;
+          th {
+            text-align: center;
+            padding: 0.5em;
+          }
+        }
+    
+        tbody {
+          tr {
+              transition: all 300ms;
+            td {
+              border-bottom: 1px solid grey;
+              line-height: 2.5rem;
+              padding: .5em 1em;
+              font-size: 1.7rem;
+            }
+    
+            &:hover {
+                background-color: lightgrey;
+            }
+
+            button {
+                @include buttonStyle(lightblue);
+          
+                &:hover {
+                  background: blue;
+                  color: white;
+                }
+          
+                &.delete {
+                  background: pink;
+          
+                  &:hover {
+                    background: red;
+                  }
+                }
+              }
+          }
+        }
+    }
+}

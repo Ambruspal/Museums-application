@@ -55,6 +55,12 @@
             </tbody>
         </table>
         <button class="exhibitions-add" *ngIf="!formVisible" (click)="setFormVisibility()">Add a New Exhibition</button>
+
+        <div *ngIf="error" class="error">
+            <span>Server response: {{ error }}</span>
+            <button class="error-close-btn"  (click)="error = null">&times;</button>
+        </div>
+
         <form *ngIf="formVisible" [formGroup]="exhibitionForm" (ngSubmit)=onSubmit()>
             <div>
                 <label for="id">ID</label>
@@ -78,11 +84,11 @@
             </div>
             <div>
                 <label for="start">Start</label>
-                <input id="start" formControlName="start" type="text">
+                <input id="start" formControlName="start" type="date">
             </div>
             <div>
                 <label for="end">End</label>
-                <input id="end" formControlName="end" type="text">
+                <input id="end" formControlName="end" type="date">
             </div>
 
             <button type="submit" [disabled]="exhibitionForm.invalid">Submit</button>
