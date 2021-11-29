@@ -8,6 +8,8 @@ import { RegistrationsComponent } from './registrations/registrations.component'
 import { RouterModule } from '@angular/router';
 import { ADMIN_ROUTES } from './admin.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 
@@ -17,13 +19,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ExhibitionsComponent,
     MuseumsComponent,
     MuseumComponent,
-    RegistrationsComponent
+    RegistrationsComponent,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(ADMIN_ROUTES),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    provideStorage(() => getStorage()),
   ]
 })
 export class AdminModule { }

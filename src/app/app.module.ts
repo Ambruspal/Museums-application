@@ -13,6 +13,10 @@ import { MainComponent } from './components/main/main.component';
 import { ExhibitionComponent } from './components/exhibition/exhibition.component';
 import { BaseComponent } from './components/base/base.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+ 
   ],
   providers: [],
   bootstrap: [AppComponent],
