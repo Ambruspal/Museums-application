@@ -14,6 +14,7 @@ export const ADMIN_ROUTES: Routes = [
       { path: 'museums', component: MuseumsComponent },
       { path: 'exhibitions', component: ExhibitionsComponent },
       { path: 'registrations', component: RegistrationsComponent },
+      { path: '', component: MuseumsComponent },
     ],
   },
 ];

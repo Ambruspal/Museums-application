@@ -54,10 +54,13 @@ export class BaseHttpService<E> {
 
   private handleError(error: any) {
     console.error('server error:', error);
-    if (error.error instanceof Error) {
-      const errMessage = error.error.message;
-      return throwError(new Error(errMessage));
-    }
-    return throwError(new Error(error || 'server error'));
+    // if (error instanceof Error) {
+    //   const errMessage = error.message;
+    //   // return throwError(new Error(errMessage));
+    //   return throwError(new Error(
+    //     error.error ? error.error[0]['errorMessage'] || 'server error'
+    //     ));
+    // }
+    return throwError(new Error(error.error[0]['errorMessage'] || 'server error'));
   }
 }

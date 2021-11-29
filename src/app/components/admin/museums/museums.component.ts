@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Museum } from 'src/app/models/Museum';
 import { MuseumHttpService } from 'src/app/services/http/museum-http.service';
 import { BaseComponent } from '../../base/base.component';
 import { takeUntil } from 'rxjs/operators';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Exhibition } from 'src/app/models/Exhibition';
 
 @Component({
   selector: 'app-museums',
@@ -49,7 +47,7 @@ export class MuseumsComponent extends BaseComponent {
   filterMuseums(): void {
     this.filteredList = this.museums;
     
-    this.searchTerm = this.searchTerm.trim();
+    this.searchTerm = this.searchTerm.trim().toLowerCase()
 
     if (!this.searchTerm) {
       this.numOfResults = this.filteredList.length;
@@ -64,7 +62,7 @@ export class MuseumsComponent extends BaseComponent {
             m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             m.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
             m.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            m.zip.includes(this.searchTerm) ||
+            m.zip.includes(searchTerm) ||
             m.description.toLowerCase().includes(searchTerm.toLowerCase())
           ) {
             return m;
@@ -77,11 +75,11 @@ export class MuseumsComponent extends BaseComponent {
     else {
       this.filteredList = this.filteredList.filter((m) => {
         if (
-          m.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          m.city.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          m.address.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          m.zip.includes(this.searchTerm) ||
-          m.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+          m.name.toLowerCase().includes(this.searchTerm) ||
+          m.city.toLowerCase().includes(this.searchTerm) ||
+          m.address.toLowerCase().includes(this.searchTerm) ||
+          m.zip.toLowerCase().includes(this.searchTerm) ||
+          m.description.toLowerCase().includes(this.searchTerm)
         ) {
           return m;
         }

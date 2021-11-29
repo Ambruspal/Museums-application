@@ -1,21 +1,30 @@
 .admin-page-container {
   margin-top: 6em;
   display: flex;
-  // justify-content: space-between;
+  justify-content: flex-start;
+
   gap: 2em;
 
   nav {
     ul {
         list-style: none;
       li {
-        margin: 1em;
+        // margin: 1em;
         padding: 1em;
+        background-color: lightblue;
+        transition: all 300ms;
+
+        &:hover {
+          background-color: steelblue;
+          color: orange;
+        }
 
         a {
+          color: black;
           text-decoration: none;
-           &:hover {
-               text-decoration: underline;
-           }
+          text-transform: uppercase;
+          color: inherit;
+          letter-spacing: 1px;
         }
       }
     }

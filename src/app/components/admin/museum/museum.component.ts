@@ -34,6 +34,8 @@ export class MuseumComponent extends BaseComponent {
 
   readonly = false;
 
+  error: string | null = null;
+
   ngOnInit(): void {
     this.getMuseumDetails();
   }
@@ -58,7 +60,7 @@ export class MuseumComponent extends BaseComponent {
   createForm(): void {
     this.exhibitionForm = this.fb.group({
       id: [''],
-      museumId: [this.museum.id],
+      museumId: [this.id],
       title: ['', Validators.required],
       fullPrice: ['', Validators.required],
       description: ['', Validators.required],
@@ -78,9 +80,14 @@ export class MuseumComponent extends BaseComponent {
 
   onSubmit(): void {
     // we check if we should update or create an exhibition.
+
+    // console.log(this.exhibitionForm.value)
+    // return;
+
     if (this.exhibitionForm.value.id) {
       const { id }: { id: string } = this.exhibitionForm.value;
       const payload = this.exhibitionForm.value;
+      payload.museumId = this.museum.id;
 
       this.exhibitionHttpService
         .updateById(payload, id)
@@ -95,7 +102,7 @@ export class MuseumComponent extends BaseComponent {
               throw new Error('something went wrong');
             }
           },
-          err => alert(err.message),
+          err => this.error = err.message,
           () => {
             this.exhibitionForm.reset();
             this.readonly = false;
@@ -104,9 +111,9 @@ export class MuseumComponent extends BaseComponent {
         );
     } else {
       // we create a new exhibition entry
-      const { title, fullPrice, description, museumId, capacity, start, end } =
+      const { title, fullPrice, description, capacity, start, end } =
         this.exhibitionForm.value;
-      const newExhibition: Exhibition = { title, fullPrice, description, museumId, capacity, start, end, registrations: [] };
+      const newExhibition: Exhibition = { title, fullPrice, description, museumId: this.museum.id, capacity, start, end, registrations: [] };
       this.exhibitionHttpService
         .create(newExhibition)
         .pipe(takeUntil(this.destroy$))
@@ -117,7 +124,7 @@ export class MuseumComponent extends BaseComponent {
             throw new Error('something went wrong');
           }
         },
-        error => alert(error.message),
+        error => this.error = error.message,
           () => {
             this.exhibitionForm.reset();
             this.readonly = false;
