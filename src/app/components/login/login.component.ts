@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  login(): void {
     console.log(
       this.loginForm.controls.personName.value,
       this.loginForm.controls.password.value
