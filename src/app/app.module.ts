@@ -13,6 +13,7 @@ import { MainComponent } from './components/main/main.component';
 import { ExhibitionComponent } from './components/exhibition/exhibition.component';
 import { BaseComponent } from './components/base/base.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExhibitionsComponent } from './components/exhibition-list/exhibitions.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     MainComponent,
     ExhibitionComponent,
-    ExhibitionComponent,
     BaseComponent,
+    ExhibitionsComponent,
   ],
   imports: [
     BrowserModule,

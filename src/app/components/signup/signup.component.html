@@ -6,7 +6,7 @@
                 <input type="text" id="name" formControlName="personName">
             </div>
             <div>
-                <label for="category">Látogató státusza</label>
+                <label for="category">Státusz</label>
                 <select id="category" formControlName="visitorCategory">
                     <option *ngFor="let category of visitorCategories; let i = index" [value]="category">
                         {{categoriesInHungarian[i]}}
@@ -18,7 +18,7 @@
                 <input type="text" id="time" formControlName="visitTime">
             </div>
             <div>
-                <label for="price">Ára</label>
+                <label for="price">Ár</label>
                 <input type="number" id="price" formControlName="price">
             </div>
             <button type="submit" [disabled]="registrationForm.invalid">Regisztráció</button>
