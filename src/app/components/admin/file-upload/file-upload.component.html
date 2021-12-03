@@ -1,0 +1,4 @@
+<h1>file-upload works!</h1>
+<input #fileInput type="file" (change)="submitFile(fileInput.files)">
+<button [disabled]="!file" (click)="uploadFile()" >upload</button>
+<button [disabled]="!file" (click)="cancelUpload()" >cancel</button>

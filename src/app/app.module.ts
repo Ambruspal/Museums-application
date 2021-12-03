@@ -14,6 +14,9 @@ import { ExhibitionComponent } from './components/exhibition/exhibition.componen
 import { BaseComponent } from './components/base/base.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExhibitionsComponent } from './components/exhibition-list/exhibitions.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { ExhibitionsComponent } from './components/exhibition-list/exhibitions.c
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent],
