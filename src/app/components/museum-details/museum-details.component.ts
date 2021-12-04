@@ -25,7 +25,7 @@ export class MuseumDetailsComponent
 
   ngOnInit(): void {
     // Get museum by id from museum-list
-    this.subjectService.idSubject.pipe(takeUntil(this.destroy$)).subscribe(
+    this.subjectService.idSubject$.pipe(takeUntil(this.destroy$)).subscribe(
       (id: number | undefined) => this.getMuseumById(id),
       (err) => console.error(err.message)
     );
