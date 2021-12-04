@@ -13,7 +13,7 @@ import { MainComponent } from './components/main/main.component';
 import { ExhibitionComponent } from './components/exhibition/exhibition.component';
 import { BaseComponent } from './components/base/base.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ExhibitionsComponent } from './components/exhibition-list/exhibitions.component';
+import { ExhibitionsComponent } from './components/exhibitions/exhibitions.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';

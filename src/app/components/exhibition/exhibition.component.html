@@ -7,7 +7,7 @@
         <p class="duration">{{ exhibitionInChild.start }} - {{ exhibitionInChild.end }}</p>
         <p class="description">{{exhibitionInChild.description}}</p>
         <p class="price">Kedvezmények nélküli felnőtt belépő ára: <span>{{ exhibitionInChild.fullPrice }}</span></p>
-        <p class="additional-info">Kapacítás: {{exhibitionInChild.capacity}}/{{exhibitionInChild.registrations.length}}
+        <p class="additional-info">Kapacítás: {{exhibitionInChild.capacity}}/{{exhibitionInChild.registrations ? exhibitionInChild.registrations.length : 'missing registration field!'}}
         </p>
         <p class="additional-info">Jelentkezett tagok: <span *ngFor="let registration of exhibitionInChild.registrations">{{
                 registration.personName }}, </span></p>

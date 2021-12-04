@@ -1,0 +1,26 @@
+<section class="exhibitions-section">
+    <div class="calendar-container">
+        <div class="calendar">
+            <div class="calendar-header">
+                <div class="time-container">
+                    <p>{{currentMonth}} {{currentDayOfTheMonth}}. {{currentDay}}</p>
+                </div>
+            </div>
+            <div class="calendar__date">
+                <div class="calendar__day">Hét</div>
+                <div class="calendar__day">Kedd</div>
+                <div class="calendar__day">Szer</div>
+                <div class="calendar__day">Csüt</div>
+                <div class="calendar__day">Pén</div>
+                <div class="calendar__day">Szom</div>
+                <div class="calendar__day">Vas</div>
+            </div>
+        </div>
+        <button *ngIf="!allVisible" (click)="showAll()">Mutasd mind</button>
+        <!-- <button (click)="showAll()">Mutasd mind</button> -->
+    </div>
+    <div class="exhibition-list">
+        <app-exhibition [exhibitionInChild]="exhibition" *ngFor="let exhibition of filteredExhibitionList">
+        </app-exhibition>
+    </div>
+</section>

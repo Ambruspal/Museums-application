@@ -5,7 +5,14 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class SubjectService {
-  idSubject = new Subject<number | undefined>();
+  idSubject$ = new Subject<number | undefined>();
 
   constructor() {}
+
+  scrollUpSmoothly(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
 }

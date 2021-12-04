@@ -91,8 +91,8 @@ export class MuseumListComponent
   }
 
   passId(id: number | undefined): void {
-    this.subjectService.idSubject.next(id);
-    this.scrollUpSmoothly();
+    this.subjectService.idSubject$.next(id);
+    this.subjectService.scrollUpSmoothly();
   }
 
   private renderNameList(): void {
@@ -105,13 +105,6 @@ export class MuseumListComponent
 
   private clearNameValue(): void {
     this.name.reset('név szerint', { emitEvent: false });
-  }
-
-  private scrollUpSmoothly(): void {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
   }
 
   ngOnDestroy(): void {
