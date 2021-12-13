@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Exhibition } from 'src/app/models/Exhibition';
 import { Museum } from 'src/app/models/Museum';
+import { Photo } from 'src/app/models/Photo';
 import { ExhibitionHttpService } from 'src/app/services/http/exhibition-http.service';
 import { MuseumHttpService } from 'src/app/services/http/museum-http.service';
+import { PhotoHttpService } from 'src/app/services/http/photo-http.service';
 import { BaseComponent } from '../../base/base.component';
 
 @Component({
@@ -19,6 +22,7 @@ export class MuseumComponent extends BaseComponent {
     private activatedRoute: ActivatedRoute,
     private museumHttpService: MuseumHttpService,
     private exhibitionHttpService: ExhibitionHttpService,
+    private photoHttpService: PhotoHttpService,
     private fb: FormBuilder
     ) { 
       super();
@@ -27,6 +31,8 @@ export class MuseumComponent extends BaseComponent {
   id = this.activatedRoute.snapshot.params.id;
 
   museum!: Museum
+
+  museumPhotos$!: Observable<Photo[]>
 
   formVisible = false;
 
@@ -55,6 +61,7 @@ export class MuseumComponent extends BaseComponent {
         error: (err) => alert(err.message),
         complete: () => this.createForm()
       })
+    this.museumPhotos$ = this.photoHttpService.getAll({ museumId: this.id })
   }
 
   createForm(): void {

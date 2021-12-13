@@ -1,0 +1,55 @@
+@use "../../../app.component" as m;
+
+.upload {
+    margin-top: 2em;
+
+  &-section {
+    padding: 2em;
+    // width: 60%;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+
+    input {
+      @include m.buttonStyle;
+    }
+
+    textarea {
+      resize: none;
+      width: 300px;
+      padding: 1em;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      @include m.buttonStyle;
+      transition: all 300ms;
+
+      &:hover {
+          background-color: green;
+      }
+
+      &:last-of-type {
+        @include m.buttonStyle(lightgrey);
+        &:hover {
+            background: grey;
+        }
+      }
+    }
+  }
+
+  .thumbnail {
+    max-width: 200px;
+    height: auto;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
